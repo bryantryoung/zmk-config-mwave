@@ -52,4 +52,30 @@ behaviors {
         bindings = <&bt_clear>, <&none>;
         display-name = "BT-hold-clear";
     };
+
+    // Home row mods: hold = mod, tap = key. Only trigger hold when other hand is used (positional).
+    // hold-trigger-on-release allows combining multiple mods on the same hand (e.g. S+D then key).
+    // Key positions: left hand 0-6,18-24,33-38,48-53,62-67,76-80 | right hand 7-17,25-32,39-47,54-61,68-75,81-86
+    lhm: left_hand_mod {
+        compatible = "zmk,behavior-hold-tap";
+        #binding-cells = <2>;
+        flavor = "tap-preferred";
+        tapping-term-ms = <200>;
+        quick-tap-ms = <150>;
+        hold-trigger-key-positions = <7 8 9 10 11 12 13 14 15 16 17 25 26 27 28 29 30 31 32 39 40 41 42 43 44 45 46 47 54 55 56 57 58 59 60 61 68 69 70 71 72 73 74 75 81 82 83 84 85 86>;
+        hold-trigger-on-release;
+        bindings = <&kp>, <&kp>;
+        display-name = "Left hand home row mod";
+    };
+    rhm: right_hand_mod {
+        compatible = "zmk,behavior-hold-tap";
+        #binding-cells = <2>;
+        flavor = "tap-preferred";
+        tapping-term-ms = <200>;
+        quick-tap-ms = <150>;
+        hold-trigger-key-positions = <0 1 2 3 4 5 6 18 19 20 21 22 23 24 33 34 35 36 37 38 48 49 50 51 52 53 62 63 64 65 66 67 76 77 78 79 80>;
+        hold-trigger-on-release;
+        bindings = <&kp>, <&kp>;
+        display-name = "Right hand home row mod";
+    };
 };
