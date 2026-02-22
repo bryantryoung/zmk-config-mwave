@@ -53,33 +53,34 @@ behaviors {
         display-name = "BT-hold-clear";
     };
 
-    /* Left-hand home-row mods (S/D): trigger hold only when a RIGHT-side key is involved */
     lhm: left_hand_mod {
         compatible = "zmk,behavior-hold-tap";
         #binding-cells = <2>;
 
+        /* Prefer taps while typing */
         flavor = "tap-preferred";
+
+        /* Good starting values for HRM */
         tapping-term-ms = <200>;
         quick-tap-ms = <175>;
         require-prior-idle-ms = <120>;
 
+        /* Key improvement for positional HRMs */
         hold-trigger-on-release;
 
-        /* RIGHT side: Y.., home row H..Enter..PgUp, bottom row N..PgDn, right thumb/arrow cluster, plus Backspace */
+        /* If the next keypress is on the RIGHT side, allow the hold (mod) */
         hold-trigger-key-positions = <
-            24 25 26 27 28 29 30        /* N7 N8 N9 N0 - = BSPC */
-            37 38 39 40 41 42 43 44 45  /* Y U I O P [ ] \ DEL */
-            52 53 54 55 56 57 58 59     /* H J K L ; ' ENTER PGUP */
-            66 67 68 69 70 71 72 73     /* N M , . / RSHFT UP PGDN */
-            78 79 80 81                 /* right space + RGUI RALT RCTRL */
-            82 83 84                    /* arrows */
+            24 25 26 27 28 29 30
+            37 38 39 40 41 42 43 44 45
+            52 53 54 55 56 57 58 59
+            66 67 68 69 70 71 72 73
+            78 79 80 81 82 83 84
         >;
 
         bindings = <&kp &kp>;
         display-name = "Left hand home row mod";
     };
 
-    /* Right-hand home-row mods (K/L): trigger hold only when a LEFT-side key is involved */
     rhm: right_hand_mod {
         compatible = "zmk,behavior-hold-tap";
         #binding-cells = <2>;
@@ -91,13 +92,13 @@ behaviors {
 
         hold-trigger-on-release;
 
-        /* LEFT side: `..6, Tab/Q..T, Caps/A..G, LShift/Z..B, left thumb cluster */
+        /* If the next keypress is on the LEFT side, allow the hold (mod) */
         hold-trigger-key-positions = <
-            17 18 19 20 21 22 23        /* ` 1 2 3 4 5 6 */
-            31 32 33 34 35 36           /* TAB Q W E R T */
-            46 47 48 49 50 51           /* CLCK A S D F G */
-            60 61 62 63 64 65           /* LSHFT Z X C V B */
-            74 75 76 77                 /* LCTRL LALT LGUI left SPACE */
+            17 18 19 20 21 22 23
+            31 32 33 34 35 36
+            46 47 48 49 50 51
+            60 61 62 63 64 65
+            74 75 76 77
         >;
 
         bindings = <&kp &kp>;
